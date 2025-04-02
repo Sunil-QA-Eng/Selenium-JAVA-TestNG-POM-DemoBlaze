@@ -1,4 +1,4 @@
-name: Selenium Java TestNG Workflow
+name: Test
 
 on:
   push:
@@ -41,9 +41,14 @@ jobs:
         run: mvn install -DskipTests
 
       - name: Run TestNG tests
-        run: mvn test -DsuiteXmlFile=testng.xml
+        run: |
+          echo "Running TestNG tests"
+          mvn test -DsuiteXmlFile=testng.xml
 
-      - name: Upload test results (Optional)
+      - name: Generate Allure Report
+        run: mvn allure:report
+
+      - name: Upload test results
         uses: actions/upload-artifact@v2
         with:
           name: selenium-test-results
