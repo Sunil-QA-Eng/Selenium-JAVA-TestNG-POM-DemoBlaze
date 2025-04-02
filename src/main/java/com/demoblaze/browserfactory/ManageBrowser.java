@@ -4,6 +4,7 @@ import com.demoblaze.propertyreader.PropertyReader;
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -28,7 +29,11 @@ public class ManageBrowser {
 
     public void selectBrowser(String browser){
         if (browser.equalsIgnoreCase("chrome")) {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless");
+            options.addArguments("--disable-gpu");
+            options.addArguments("--no-sandbox");
+            driver = new ChromeDriver(options);
         } else if (browser.equalsIgnoreCase("firefox")) {
             driver = new FirefoxDriver();
         } else if (browser.equalsIgnoreCase("edge")) {

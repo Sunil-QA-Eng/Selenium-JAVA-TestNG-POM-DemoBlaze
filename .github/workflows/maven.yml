@@ -27,6 +27,6 @@ jobs:
       uses: action/upload-artifact@v3
       with:
         name: report
-        path: ./test-output/*.html
+        path: ./test-output/extent.html
 
    
